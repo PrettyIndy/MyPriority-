@@ -1,0 +1,75 @@
+"""
+Indigo Gudger
+version 1.0
+12/8/2024
+"""
+
+
+#import Tkinter and set customize the window title and dimensions
+import tkinter as tk
+from tkinter import PhotoImage, Button, Entry, Toplevel
+from tkinter.ttk import Label
+
+window = tk.Tk()
+window.geometry("700x800")
+Title = window.title("MyPriority - Organize Your Life")
+
+window.config(background="#D7BDE2")
+
+#Add Labels for each day
+label_1= Label(window, text="Track your Habits Here!", font=("Amasis MT Pro Black",20))
+label_1.pack()
+label_2= Label(window, text="Monday")
+label_2.place(x=0,y=200)
+Label_3= Label(window, text="Tuesday")
+Label_3.place(x=100,y=200)
+Label_4= Label(window, text="Wednesday")
+Label_4.place(x=200,y=200)
+label_5= Label(window, text="Thursday")
+label_5.place(x=300,y=200)
+label_6= Label(window, text="Friday")
+label_6.place(x=400,y=200)
+label_7= Label(window, text="Saturday")
+label_7.place(x=500,y=200)
+label_8= Label(window, text="Sunday")
+label_8.place(x=600,y=200)
+
+
+
+#new habit function
+def newHabit():
+    top = Toplevel()
+    top.title("New Habit")
+    top.geometry("400x400")
+    top.config(background="#D7BDE2")
+    label2nd = Label(top, text="New Habit Name: ")
+    label2nd.place(x=200,y=200)
+    habitname = Entry(top, width=70)
+    habitname.place(x=200, y=225)
+    habitname.get()
+    label3rd = Label(top, text="What days will you complete this habit?")
+    label3rd.place(x=200,y=300)
+    HabitDays = Entry(top, width=70)
+    HabitDays.place(x=200, y=325)
+    HabitDays.get()
+
+#have user input the habit, the day and time to complete habit
+#have new habit displayed on main page
+
+
+
+
+# add button to add a new habit
+new_habitButton =Button(window, text="New Habit", bg="#add8e6", command=newHabit)
+new_habitButton.place(x=325, y=100)
+
+
+
+
+
+
+
+
+
+
+window.mainloop()
