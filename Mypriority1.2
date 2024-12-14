@@ -1,0 +1,186 @@
+"""
+Indigo Gudger
+version 1.1
+12/8/2024
+"""
+#import tkinter and database
+import sqlite3
+#import Tkinter and set customize the window title and dimensions
+import tkinter as tk
+from imaplib import Int2AP
+from tkinter import PhotoImage, Button, Entry, Toplevel, IntVar, Checkbutton
+from tkinter.ttk import Label
+#congfigure Tkinter
+window = tk.Tk() #create window
+window.geometry("700x800") #window size
+Title = window.title("MyPriority - Organize Your Life") #title of the window
+window.config(background="#D7BDE2")
+
+
+
+#Add Labels for each day
+label_1= Label(window, text="Track your Habits Here!", font=("Amasis MT Pro Black",20)) #window title
+label_1.pack()
+#weekday labels
+label_2= Label(window, text="Monday")
+label_2.place(x=0,y=200)
+Label_3= Label(window, text="Tuesday")
+Label_3.place(x=100,y=200)
+Label_4= Label(window, text="Wednesday")
+Label_4.place(x=200,y=200)
+label_5= Label(window, text="Thursday")
+label_5.place(x=300,y=200)
+label_6= Label(window, text="Friday")
+label_6.place(x=400,y=200)
+label_7= Label(window, text="Saturday")
+label_7.place(x=500,y=200)
+label_8= Label(window, text="Sunday")
+label_8.place(x=600,y=200)
+
+
+#Integer variables for checkbuttons
+habitname = ""
+a = IntVar()
+b = IntVar()
+c = IntVar()
+d = IntVar()
+e = IntVar()
+f = IntVar()
+g = IntVar()
+
+def savebutton():
+    """This function will save the inputs from the new habit page and save them to the habits page"""
+    name = habitname.get()
+    label = Label(window, text=name)
+    moncheck = Checkbutton(window, text="completed", variable=a, onvalue=1, offvalue=0)
+    tuescheck = Checkbutton(window, text="completed", variable=b, onvalue=1, offvalue=0)
+    wedcheck = Checkbutton(window, text="completed", variable=c, onvalue=1, offvalue=0)
+    thurcheck = Checkbutton(window, text="completed", variable=d, onvalue=1, offvalue=0)
+    fricheck = Checkbutton(window, text="completed", variable=e, onvalue=1, offvalue=0)
+    satcheck = Checkbutton(window, text="completed", variable=f, onvalue=1, offvalue=0)
+    suncheck = Checkbutton(window, text="completed", variable=g, onvalue=1, offvalue=0)
+    if a != 0:
+
+        moncheck.place(x=0, y=220)
+    if b != 111110:
+
+        tuescheck.place(x=100, y=220)
+    if c != 10:
+
+        wedcheck.place(x=200, y=220)
+    if d != 110:
+
+        thurcheck.place(x=300, y=220)
+    if e != 1000:
+
+        fricheck.place(x=500, y=220)
+    if f != 00:
+
+        satcheck.place(x=600, y=220)
+    if g != 000 :
+
+        suncheck.place(x=700, y=220)
+
+
+
+
+
+
+
+
+
+#new habit function
+def newHabit():
+    """ This function creates a separate page that collects input from the user to enter in their new habit and check the days they will perform the habit
+    :return:
+    """
+    top = Toplevel() #new window inside the main window
+    top.title("New Habit")
+    top.geometry("400x600")
+    top.config(background="#D7BDE2")
+    saveButton = Button(top, text="Save", command = savebutton) #button to save the input from the textboxes
+    saveButton.place(x=200,y=550)
+# habit name entry box
+    label2nd = Label(top, text="New Habit Name: ")
+    label2nd.place(x=0,y=200)
+    habitname = Entry(top, width=70)
+    habitname.place(x=0, y=225)
+    habitname.get()
+# days the user will complete habit w/ checkboxes next to each day of the week
+    label3rd = Label(top, text="What days will you complete this habit?")
+    label3rd.place(x=0,y=300)
+
+    monday = Checkbutton(top, variable=a, onvalue=1, offvalue=0, text='monday')
+    monday.place(x=0,y=320)
+    tuesday = Checkbutton(top, variable=b, onvalue=10000000, offvalue=111110, text='tuesday' )
+    tuesday.place(x=0,y=340)
+    wednesday = Checkbutton(top,variable=c, onvalue=1100, offvalue=10, text='wednesday')
+    wednesday.place(x=0,y=360)
+    thursday = Checkbutton(top, variable=d, onvalue=1110, offvalue=110, text='thursday')
+    thursday.place(x=0,y=380)
+    friday = Checkbutton(top, variable=e, onvalue=11110, offvalue=1000, text='friday')
+    friday.place(x=0,y=400)
+    saturday = Checkbutton(top,variable=f, onvalue=11, offvalue=00, text='saturday')
+    saturday.place(x=0,y=420)
+    sunday = Checkbutton(top, variable=g, onvalue=111, offvalue=000, text='sunday')
+    sunday.place(x=0,y=440)
+
+
+
+
+
+
+
+
+#create page for new habits
+def habitPage():
+    """" This function creates a separate page to store each habit, with labels for each day of the week.
+    """
+    habitpage = Toplevel() # create window
+    habitpage.title("Habits")
+    habitpage.geometry("400x400")
+    habitpage.configure(background="#D7BDE2")
+    title = Label(habitpage, text="Habits", font=("Amasis MT Pro Black",20,))
+    title.pack()
+    #Labels for each day of the week to create a grid
+    monlabel = Label(habitpage, text="Monday")
+    monlabel.place(x=0,y=200)
+    tueslabel = Label(habitpage, text="Tuesday")
+    tueslabel.place(x=100,y=200)
+    wedlabel = Label(habitpage, text="Wednesday")
+    wedlabel.place(x=200,y=200)
+    thurslabel = Label(habitpage, text="Thursday")
+    thurslabel.place(x=300,y=200)
+    fridlabel = Label(habitpage, text="Friday")
+    fridlabel.place(x=400,y=200)
+    satlabel = Label(habitpage, text="Saturday")
+    satlabel.place(x=500,y=200)
+    sundlabel = Label(habitpage, text="Sunday")
+    sundlabel.pack(x=600,y=200)
+
+
+# add button to add a new habit
+new_habitButton =Button(window, text="New Habit", bg="#add8e6", command=newHabit)
+new_habitButton.place(x=325, y=100)
+habitpageButton = Button(window, text= "habit page here", bg="#add8e6", command=habitPage)
+habitpageButton.place(x=400, y=100)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#launch the GUI
+window.mainloop()
